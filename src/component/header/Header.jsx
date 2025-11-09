@@ -43,12 +43,12 @@ const Header = () => {
             <li><Link to="/contact">Contact</Link></li>
           </ul>
         </div>
-     <div className='flex gap-0.5'>
-         <img className='h-10' src={logo} alt="" />
-        <p><Link to="/" className="btn btn-ghost text-xl font-bold text-primary">
-          EcoTrack
-        </Link></p>
-     </div>
+        <div className='flex gap-0.5'>
+          <img className='h-10' src={logo} alt="" />
+          <p><Link to="/" className="btn btn-ghost text-xl font-bold text-primary">
+            EcoTrack
+          </Link></p>
+        </div>
       </div>
 
       {/* Center: Desktop Menu */}
@@ -72,7 +72,7 @@ const Header = () => {
               <div className="w-10 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
                 <img
                   src={user.photoURL || 'https://via.placeholder.com/40'}
-                  alt={user.displayName || 'User'}
+                 
                   className="rounded-full"
                 />
               </div>
