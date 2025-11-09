@@ -3,7 +3,7 @@ import { useLoaderData } from 'react-router-dom';
 import Modelcard from './Modelcard';
 
 const Allmodels = () => {
-  const data = useLoaderData() || []; // যদি কোনো ডাটা না আসে তাহলে empty array
+  const data = useLoaderData() || []; 
 
   return (
     <div className="px-6 py-8">

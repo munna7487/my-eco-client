@@ -9,6 +9,9 @@ import Privateroute from '../component/Privateroute';
 import Reset from '../pages/Reset';
 import Allmodels from '../pages/Allmodels';
 import Modelcard from '../pages/Modelcard'; // যদি page হিসেবে থাকে
+import ADD from '../pages/ADD';
+import Details from '../pages/Details';
+import Update from '../pages/Update';
 
 export const router = createBrowserRouter([
   {
@@ -36,10 +39,24 @@ export const router = createBrowserRouter([
         path: '/modelcard',
         element: <Modelcard />,
       },
+       {
+        path: '/add',
+        element: <ADD />,
+      },
+       {
+        path: '/update/:id',
+        element: <Update/>,
+        loader:({params})=>fetch(`http://localhost:3000/challange/${params.id}`)
+      },
       {
         path: '/allmodels',
         element: <Allmodels />,
-        loader: () => fetch('http://localhost:3000/users') // CORS এখন ঠিক আছে
+        loader: () => fetch('http://localhost:3000/challange') // CORS এখন ঠিক আছে
+      },
+      {
+        path: '/allmodels/:id',
+        element: <Details />,
+        loader:({params})=>fetch(`http://localhost:3000/challange/${params.id}`)
       },
       {
         path: '/footer',

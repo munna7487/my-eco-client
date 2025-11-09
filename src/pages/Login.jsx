@@ -5,8 +5,10 @@ import { toast } from 'react-toastify';
 import { FaEye } from "react-icons/fa";
 import { IoIosEyeOff } from "react-icons/io";
 import { GoogleAuthProvider } from "firebase/auth"; // GoogleAuthProvider import korte hobe
+import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
+    const navigate=useNavigate()
     const { signin, googlesign, resetpass } = useContext(Authcontex); // useContext hobe
     const [error, seterror] = useState("");
     const [show, setshow] = useState(false);
@@ -29,6 +31,7 @@ const Login = () => {
                 const user = userCredential.user;
                 console.log(user);
                 toast('Sign in successfully');
+                 navigate("/");
             })
             .catch((error) => {
                 const errorCode = error.code;
@@ -59,6 +62,7 @@ const Login = () => {
                 const token = credential.accessToken;
                 const user = result.user;
                 console.log(user);
+                  navigate("/");
             })
             .catch((error) => {
                 const errorCode = error.code;

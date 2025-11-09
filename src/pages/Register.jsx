@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react';
-import { Link } from 'react-router';
+import { Link, useNavigate } from 'react-router-dom'; // Fixed: 'react-router' → 'react-router-dom'
 import { Authcontex } from '../Provider/Authprovider';
 import { toast } from 'react-toastify';
 import { MdRemoveRedEye } from "react-icons/md";
@@ -7,22 +7,19 @@ import { FaEyeSlash } from "react-icons/fa";
 
 const Register = () => {
   const { createuser, updateuser } = useContext(Authcontex);
-  const [user, setuser] = useState(null);
-  const [show, setshow] = useState(false); // ✅ moved outside the function (hooks can't be inside another function)
+  const [show, setshow] = useState(false);
+  const navigate = useNavigate(); 
 
   const handleregister = (e) => {
     e.preventDefault();
-
     const name = e.target.name.value;
     const photo = e.target.photo.value;
     const password = e.target.password.value;
     const email = e.target.email.value;
 
-    const emailRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
-
-    // ✅ fixed: you tested password with email regex before (wrong)
+    // Password length check
     if (password.length < 8) {
-      toast("Password must be at least 8 characters");
+      toast.error("Password must be at least 8 characters");
       return;
     }
 
@@ -30,19 +27,17 @@ const Register = () => {
       .then((userCredential) => {
         const firebaseUser = userCredential.user;
 
+        // Update profile (name + photo)
         updateuser({ displayName: name, photoURL: photo })
           .then(() => {
-            setuser({
-              ...firebaseUser,
-              displayName: name,
-              photoURL: photo,
-            });
-            toast.success('Registration done');
+            toast.success('Registration successful!');
+            
+            navigate("/");
           })
           .catch((error) => {
             console.log('Profile update error:', error);
-            setuser(firebaseUser);
             toast.error('Profile update failed');
+            // navigate("/"); 
           });
       })
       .catch((error) => {
@@ -75,26 +70,25 @@ const Register = () => {
                 <label className="label">Password</label>
                 <input
                   name="password"
-                  type={show ? "text" : "password"}  // ✅ show/hide password works now
-                  className="input"
+                  type={show ? "text" : "password"}
+                  className="input w-full"
                   placeholder="Password"
                   required
                 />
-                {/* ✅ fixed: spelling of absolute + added working toggle */}
                 <span
                   onClick={() => setshow(!show)}
-                  className='absolute right-[28px] top-[35px] cursor-pointer'
+                  className='absolute right-4 top-7 cursor-pointer text-xl'
                 >
                   {show ? <FaEyeSlash /> : <MdRemoveRedEye />}
                 </span>
               </div>
 
-              <button type="submit" className="btn btn-neutral mt-4">
+              <button type="submit" className="btn btn-neutral mt-6 w-full">
                 Register
               </button>
 
-              <h1 className="text-[15px] font-semibold text-center">
-                Already have an account? <Link className="text-blue-600" to="/login">Login</Link>
+              <h1 className="text-[15px] font-semibold text-center mt-4">
+                Already have an account? <Link className="text-blue-600 underline" to="/login">Login</Link>
               </h1>
             </fieldset>
           </form>
