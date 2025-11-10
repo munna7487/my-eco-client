@@ -76,7 +76,7 @@ const Login = () => {
     return (
         <div className='flex justify-center min-h-screen items-center'>
             <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">
-                <h1 className='text-center text-2xl font-bold py-5'>Login your account</h1>
+                <h1 className='text-center text-2xl font-bold py-5'>Login to EcoTrack</h1>
                 <form onSubmit={handlelogin} className="card-body">
                     <fieldset className="fieldset">
                         {/* Email */}

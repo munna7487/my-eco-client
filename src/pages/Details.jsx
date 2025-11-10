@@ -9,7 +9,7 @@ const Details = () => {
   const { id } = useParams();
 
   useEffect(() => {
-    fetch(`http://localhost:3000/challange/${id}`)
+    fetch(`https://eco-client-server.vercel.app/challange/${id}`)
       .then(res => res.json())
       .then(data => {
         setModel(data.result || data);
@@ -22,7 +22,7 @@ const Details = () => {
     if (!user) return alert("লগইন করুন!");
 
     const token = await user.getIdToken();
-    const res = await fetch(`http://localhost:3000/challange/${model._id}`, {
+    const res = await fetch(`https://eco-client-server.vercel.app/challange/${model._id}`, {
       method: "DELETE",
       headers: { authorization: `Bearer ${token}` }
     });
@@ -47,9 +47,9 @@ const Details = () => {
       <p><strong>Participants:</strong> {model.participants}</p>
       <p><strong>Duration:</strong> {model.duration}</p>
       <p><strong>impactMetric:</strong> {model.impactMetric}</p>
-      <p><strong>Target:</strong> {model.target}</p> 
-           <p><strong>startDate:</strong> {model.startDate}</p> 
-              <p><strong>EndtDate:</strong> {model.endDate}</p> 
+      <p><strong>Target:</strong> {model.target}</p>
+      <p><strong>startDate:</strong> {model.startDate}</p>
+      <p><strong>EndtDate:</strong> {model.endDate}</p>
       <div className="mt-8 flex gap-4">
         <Link to={`/update/${model._id}`} className="btn btn-primary">Update</Link>
         <button onClick={handleDelete} className="btn btn-error">Delete</button>

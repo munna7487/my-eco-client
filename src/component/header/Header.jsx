@@ -1,11 +1,13 @@
 import React, { useContext } from 'react';
-import { Link } from 'react-router-dom'; // Fixed: 'react-router' → 'react-router-dom'
+import { Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { Authcontex } from '../../Provider/Authprovider';
 import 'react-toastify/dist/ReactToastify.css';
-import logo from "../../assets/green.jpg"
+import logo from "../../assets/green.jpg";
+
 const Header = () => {
   const { user, logout } = useContext(Authcontex);
+  console.log(user);
 
   const handleLogout = () => {
     logout()
@@ -44,7 +46,7 @@ const Header = () => {
           </ul>
         </div>
         <div className='flex gap-0.5'>
-          <img className='h-10' src={logo} alt="" />
+          <Link to="/"><img to="/" className='h-10' src={logo} alt="" /></Link>
           <p><Link to="/" className="btn btn-ghost text-xl font-bold text-primary">
             EcoTrack
           </Link></p>
@@ -63,17 +65,20 @@ const Header = () => {
       {/* Right: Auth Section */}
       <div className="navbar-end gap-2">
         {user ? (
-          // Logged In: Dropdown with Avatar
           <div className="dropdown dropdown-end">
             <label
               tabIndex={0}
               className="btn btn-ghost avatar flex items-center gap-2"
             >
               <div className="w-10 rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
+                
                 <img
-                  src={user.photoURL || 'https://via.placeholder.com/40'}
-                 
+                  src={user.photoURL || "https://i.ibb.co.com/7YZy0WY/avatar.jpg"}
+                  alt="User Avatar"
                   className="rounded-full"
+                  onError={(e) => {
+                    e.target.src = "https://i.ibb.co.com/7YZy0WY/avatar.jpg"; 
+                  }}
                 />
               </div>
               <span className="hidden md:block text-sm font-medium">
@@ -101,14 +106,10 @@ const Header = () => {
             </ul>
           </div>
         ) : (
-          // Not Logged In: Login | Register
           <>
             <Link to="/login" className="btn btn-outline btn-primary btn-sm">
               Login
             </Link>
-            {/* <Link to="/register" className="btn btn-primary btn-sm">
-              Register
-            </Link> */}
           </>
         )}
       </div>

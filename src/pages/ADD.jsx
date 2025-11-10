@@ -20,28 +20,28 @@ const ADD = () => {
       duration: e.target.duration.value,
       description: e.target.description.value,
       imageUrl: e.target.image.value,
-      target:e.target.target.value,
-      impactMetric:e.target.impactMetric.value,
+      target: e.target.target.value,
+      impactMetric: e.target.impactMetric.value,
       startDate,
       endDate,
-      
-      createdBy: user?.email ,
+
+      createdBy: user?.email,
     };
 
-    fetch("http://localhost:3000/challange", {
-              method: "POST",
-                    headers: {
-                       "Content-Type": "application/json",
-                   },
-                         body: JSON.stringify(formdata),
-                     })
-                 .then((res) => res.json())
-                    .then((data) => {
-                       console.log("Success:", data);
-                    })
-                        .catch((error) => {
-                       console.error("Error:", error);
-         });
+    fetch("https://eco-client-server.vercel.app/challange", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(formdata),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log("Success:", data);
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      });
   };
 
   return (
@@ -79,7 +79,7 @@ const ADD = () => {
             className="input input-bordered w-full"
           />
         </div>
-         {/* impactMetric */}
+        {/* impactMetric */}
         <div>
           <label className="block text-sm font-medium mb-1">impactMetric</label>
           <input
@@ -141,7 +141,7 @@ const ADD = () => {
           Submit
         </button>
       </form>
-      
+
     </div>
   );
 };

@@ -14,6 +14,9 @@ import Details from '../pages/Details';
 import Update from '../pages/Update';
 import Active from '../pages/Active';
 import Home from '../pages/Home';
+import RecentTips from '../pages/RecentTips';
+import Upcomeingevent from '../pages/Upcomeingevent';
+
 
 export const router = createBrowserRouter([
   {
@@ -41,29 +44,41 @@ export const router = createBrowserRouter([
         path: '/modelcard',
         element: <Modelcard />,
       },
-       {
+      {
         path: '/add',
-        element: <ADD />,
+        element: <Privateroute><ADD /></Privateroute>,
       },
-       {
+      {
         path: '/active',
         element: <Active />,
-        loader:() => fetch('http://localhost:3000/latest')
+        loader: () => fetch('https://eco-client-server.vercel.app/latest')
       },
-       {
+      {
         path: '/update/:id',
-        element: <Update/>,
-        loader:({params})=>fetch(`http://localhost:3000/challange/${params.id}`)
+        element: <Privateroute><Update /></Privateroute>,
+        loader: ({ params }) => fetch(`https://eco-client-server.vercel.app/challange/${params.id}`)
       },
       {
         path: '/allmodels',
         element: <Allmodels />,
-        loader: () => fetch('http://localhost:3000/challange') 
+        loader: () => fetch('https://eco-client-server.vercel.app/challange')
       },
       {
         path: '/allmodels/:id',
-        element: <Details />,
-      
+        element: <Privateroute>
+          <Details />
+        </Privateroute>,
+
+      },
+      {
+        path: '/recent',
+        element: <RecentTips></RecentTips>,
+
+      },
+       {
+        path: '/upcomeingevent',
+        element: <Upcomeingevent></Upcomeingevent>,
+
       },
       {
         path: '/footer',
