@@ -2,7 +2,7 @@ import React from 'react';
 import Modelcard from './Modelcard';
 
 const Active = ({ data }) => {
-  console.log(data);
+  // console.log(data);
   return (
     <div>
       <h1>Latest</h1>

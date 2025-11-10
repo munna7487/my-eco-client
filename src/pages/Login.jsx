@@ -29,7 +29,7 @@ const Login = () => {
         signin(email, password)
             .then((userCredential) => {
                 const user = userCredential.user;
-                console.log(user);
+                // console.log(user);
                 toast('Sign in successfully');
                  navigate("/");
             })
@@ -61,7 +61,7 @@ const Login = () => {
                 const credential = GoogleAuthProvider.credentialFromResult(result);
                 const token = credential.accessToken;
                 const user = result.user;
-                console.log(user);
+                // console.log(user);
                   navigate("/");
             })
             .catch((error) => {

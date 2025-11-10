@@ -53,7 +53,7 @@ export const router = createBrowserRouter([
        {
         path: '/update/:id',
         element: <Update/>,
-        // loader:({params})=>fetch(`http://localhost:3000/challange/${params.id}`)
+        loader:({params})=>fetch(`http://localhost:3000/challange/${params.id}`)
       },
       {
         path: '/allmodels',
@@ -63,7 +63,7 @@ export const router = createBrowserRouter([
       {
         path: '/allmodels/:id',
         element: <Details />,
-        loader:({params})=>fetch(`http://localhost:3000/challange/${params.id}`)
+      
       },
       {
         path: '/footer',
