@@ -26,15 +26,16 @@ const handledelete=()=>{
         <div>
             <div className="card bg-base-100 w-96 shadow-sm">
                 <figure>
-                    <img
-                        src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.webp"
-                        alt="Shoes" />
+                  <img src={model?.imageUrl} alt="Model"   className="h-56 w-full object-cover transition-transform
+           duration-500 group-hover:scale-105"
+                   />
+
                 </figure>
                 <div className="card-body">
                     <h2 className="card-title">
                         {model.title}
 
-                        <div className="badge badge-secondary">  <h1>{model.category}</h1></div>
+                        <div className="badge h-10 badge-secondary">  <h1>{model.category}</h1></div>
                     </h2>
                     <p>{model.description}</p>
                     <p>{model.participants}</p>

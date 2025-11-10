@@ -13,7 +13,8 @@ const Modelcard = ({ model }) => {
         <img
           src={model?.imageUrl }
         
-          className="h-56 w-full object-cover transition-transform duration-500 group-hover:scale-105"
+          className="h-56 w-full object-cover transition-transform
+           duration-500 group-hover:scale-105"
         />
       </figure>
 
