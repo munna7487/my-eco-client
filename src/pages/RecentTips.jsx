@@ -21,7 +21,7 @@ const RecentTips = ({ data }) => {
                   {model.upvotes || 'General'}
                 </div>
                 <div className="badge badge-outline">
-                  {model.createdAt
+                  {model.createdAtpreview
                           || 'Unknown'}
                 </div>
               </div>

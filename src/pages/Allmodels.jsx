@@ -2,6 +2,7 @@ import React from 'react';
 import { useLoaderData } from 'react-router-dom';
 import Modelcard from './Modelcard';
 import { Link } from 'react-router';
+import Search from './Search';
 
 const Allmodels = () => {
   const data = useLoaderData() || []; 
@@ -10,6 +11,7 @@ const Allmodels = () => {
 
     
    <div>
+ 
 {/* // create challange */}
 
 <div className="w-full bg-teal-600 py-16 px-6 flex items-center justify-between ">
@@ -35,7 +37,7 @@ const Allmodels = () => {
 {/* // end div */}
       <h1 className="text-2xl font-bold text-center mb-6">All Models</h1>
 
-      {data.length === 0 ? (
+      {/* {data.length === 0 ? (
         <p className="text-center text-gray-500">No models found.</p>
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 justify-items-center">
@@ -43,7 +45,8 @@ const Allmodels = () => {
             <Modelcard key={model._id} model={model} />
           ))}
         </div>
-      )}
+      )} */}
+         <Search></Search>
     </div>
    </div>
   );

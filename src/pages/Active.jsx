@@ -5,13 +5,13 @@ import { MdOutlineViewHeadline } from "react-icons/md";
 const Active = ({ data }) => {
   // console.log(data);
   return (
-    <div>
-     <div className='flex justify-between'>
-       <h1>Latest</h1>
+    <div className='my-12'>
+     <div className='flex justify-between my-6'>
+       <h1><span className='text-4xl font-bold'>Active Challange </span ><br /><span className='text-2xl'>Join the movement and make an impact</span></h1>
       <Link to="/allmodels">  
         
-  view All
-  <MdOutlineViewHeadline  className='bg-amber-500'/>
+    <span className='text-[17px] p-2 border-2 border-blue-700 rounded-xl text-blue-700'>  View All</span>
+  {/* <MdOutlineViewHeadline  className='bg-amber-500'/> */}
       </Link>
      </div>
       <div className=' grid grid-cols-3'>

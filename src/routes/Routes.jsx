@@ -17,6 +17,7 @@ import Home from '../pages/Home';
 import RecentTips from '../pages/RecentTips';
 import Upcomeingevent from '../pages/Upcomeingevent';
 import Myactivities from '../pages/Myactivities';
+import Search from '../pages/Search';
 
 
 export const router = createBrowserRouter([
@@ -52,6 +53,10 @@ export const router = createBrowserRouter([
       {
         path: '/add',
         element: <Privateroute><ADD /></Privateroute>,
+      },
+      {
+        path: '/search',
+        element: <Search></Search>,
       },
       {
         path: '/active',

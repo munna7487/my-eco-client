@@ -15,7 +15,7 @@ const ADD = () => {
 
     const formdata = {
       title: e.target.title.value,
-      category: e.target.category.value,
+      category: e.target.status.value,
       participants: 0,
       duration: e.target.duration.value,
       description: e.target.description.value,
@@ -81,12 +81,13 @@ const ADD = () => {
         {/* Category */}
         <div>
           <label className="block text-sm font-medium mb-1">Category</label>
-          <input
-            type="text"
-            name="category"
-            placeholder="Enter category"
-            className="input input-bordered w-full"
-          />
+           
+  <select name="status" className="select select-bordered w-full" required>
+  <option value="Energy Conservation">Energy Conservation</option>
+  <option value="Water Conservation">Water Conservation</option>
+  <option value="Sustainable Transport">Sustainable Transport</option>
+  <option value="Green Living">Green Living</option>
+</select>
         </div>
         {/* target */}
         <div>
