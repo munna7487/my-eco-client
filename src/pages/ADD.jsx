@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import { Authcontex } from '../Provider/Authprovider';
-import { Link } from 'react-router';
+import { Link, Links } from 'react-router';
 
 const ADD = () => {
   const { user } = useContext(Authcontex);
@@ -45,7 +45,25 @@ const ADD = () => {
   };
 
   return (
-    <div className="max-w-md mx-auto bg-white shadow-lg rounded-lg p-6">
+      <div>
+<div className="w-full bg-teal-600 py-16 px-6 rounded-xl">
+  <div className="max-w-4xl mx-auto">
+    <Link to="/allmodels" className="flex items-center gap-2 text-white mb-6 hover:opacity-90 transition">
+      <span className="text-xl">←</span>
+      <span className="text-lg">Back to Challenges</span>
+    </Link>
+
+    <h1 className="text-4xl font-bold text-white">
+      Create New Challenge
+    </h1>
+
+    <p className="text-white text-lg mt-2">
+      Inspire others by creating a new sustainability challenge
+    </p>
+  </div>
+</div>
+
+    <div className="max-w-md mx-auto bg-white shadow-lg rounded-lg p-6 my-10">
       <h2 className="text-2xl font-bold mb-4 text-center">Create Card</h2>
       <form onSubmit={handlesubmit} className="space-y-4">
         {/* Title */}
@@ -143,6 +161,7 @@ const ADD = () => {
       </form>
 
     </div>
+      </div>
   );
 };
 
