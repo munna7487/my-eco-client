@@ -7,7 +7,46 @@ const Details = () => {
   const [loading, setLoading] = useState(true);
   const { user } = useContext(Authcontex);
   const { id } = useParams();
+ const handlesubmit=(e)=>{
+  e.preventDefault();
 
+    const startDate = new Date();
+    // expire date (endDate) 7 days later — you can change the number if needed
+    const endDate = new Date(startDate);
+    endDate.setDate(startDate.getDate() + 7);
+
+    const formdata = {
+        
+      
+      participants: 0,
+      duration: e.target.duration.value,
+      userid:user._id,
+
+      status: e.target.status.value,
+
+      email:user.email,
+      joindate:new Date(),
+      
+
+  
+    };
+
+    fetch("https://eco-client-server.vercel.app/active", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(formdata),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log("Success:", data);
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      });
+  
+ }
   useEffect(() => {
     fetch(`https://eco-client-server.vercel.app/challange/${id}`)
       .then(res => res.json())
@@ -18,20 +57,20 @@ const Details = () => {
   }, [id]);
 
   const handleDelete = async () => {
-    if (!window.confirm("ডিলিট করবেন?")) return;
-    if (!user) return alert("লগইন করুন!");
+    if (!window.confirm("Do you want to delete?")) return;
+    if (!user) return alert("Pease logoin!");
 
     const token = await user.getIdToken();
-    const res = await fetch(`https://eco-client-server.vercel.app/challange/${model._id}`, {
+    const res = await fetch(`https://eco-client-server.vercel.app/active`, {
       method: "DELETE",
       headers: { authorization: `Bearer ${token}` }
     });
 
     if (res.ok) {
-      alert("ডিলিট হয়েছে!");
+      alert("delete done!");
       window.location.href = "/allmodels";
     } else {
-      alert("ডিলিট ফেল!");
+      alert("Delete fail");
     }
   };
 
@@ -54,7 +93,57 @@ const Details = () => {
         <Link to={`/update/${model._id}`} className="btn btn-primary">Update</Link>
         <button onClick={handleDelete} className="btn btn-error">Delete</button>
         <Link to="/allmodels" className="btn btn-ghost">Back</Link>
+       <div>
+         <button>join challange</button>
+
+         {/* akane amr challange form */}
+
+          <div className="max-w-md mx-auto bg-white shadow-lg rounded-lg p-6 my-10">
+      <h2 className="text-2xl font-bold mb-4 text-center">Create Card</h2>
+      <form onSubmit={handlesubmit} className="space-y-4">
+        {/* Title */}
+        <div>
+          <label className="block text-sm font-medium mb-1">Title</label>
+          <input
+            type="text"
+            name="title"
+            placeholder="Enter title"
+            className="input input-bordered w-full"
+          />
+        </div>
+
+    <div>
+  <label className="block text-sm font-medium mb-1">Status</label>
+  <select name="status" className="select select-bordered w-full" required>
+  <option value="">Select status</option>
+  <option value="nostandard">No standard</option>
+  <option value="ongoing">Ongoing</option>
+  <option value="finished">Finished</option>
+</select>
+
+</div>
+
+        {/* Duration */}
+        <div>
+          <label className="block text-sm font-medium mb-1">Duration</label>
+          <input
+            type="text"
+            name="duration"
+            placeholder="Enter duration"
+            className="input input-bordered w-full"
+          />
+        </div>
+
+
+        <button type="submit" className="btn btn-primary w-full">
+          Join Challange
+        </button>
+      </form>
+
+    </div>
       </div>
+       </div>
+     
     </div>
   );
 };

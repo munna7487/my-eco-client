@@ -4,7 +4,7 @@ import { Link, Links } from 'react-router';
 
 const ADD = () => {
   const { user } = useContext(Authcontex);
-
+  // console.log(user)
   const handlesubmit = (e) => {
     e.preventDefault();
 
@@ -22,6 +22,7 @@ const ADD = () => {
       imageUrl: e.target.image.value,
       target: e.target.target.value,
       impactMetric: e.target.impactMetric.value,
+      email:user.email,
       startDate,
       endDate,
 

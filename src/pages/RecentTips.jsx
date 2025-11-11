@@ -13,15 +13,16 @@ const RecentTips = ({ data }) => {
                 {/* <div className="badge badge-secondary">NEW</div> */}
               </h2>
               <p>
-                {model.preview ||
+                {model.authorName ||
                   'A card component has a figure, a body part, and inside body there are title and actions parts.'}
               </p>
               <div className="card-actions justify-end">
                 <div className="badge badge-outline">
-                  {model.category || 'General'}
+                  {model.upvotes || 'General'}
                 </div>
                 <div className="badge badge-outline">
-                  {model.authorName || 'Unknown'}
+                  {model.createdAt
+                          || 'Unknown'}
                 </div>
               </div>
             </div>

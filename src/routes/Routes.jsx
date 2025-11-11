@@ -16,6 +16,7 @@ import Active from '../pages/Active';
 import Home from '../pages/Home';
 import RecentTips from '../pages/RecentTips';
 import Upcomeingevent from '../pages/Upcomeingevent';
+import Myactivities from '../pages/Myactivities';
 
 
 export const router = createBrowserRouter([
@@ -43,6 +44,10 @@ export const router = createBrowserRouter([
       {
         path: '/modelcard',
         element: <Modelcard />,
+      },
+       {
+        path: '/myactivities',
+        element: <Myactivities />,
       },
       {
         path: '/add',
