@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import Subbanner from "./Subbanner";
 
 const MyBanner = () => {
   const [slides, setSlides] = useState([]);
@@ -58,7 +59,8 @@ const MyBanner = () => {
   const current = slides[currentSlide];
 
   return (
-    <div className="relative w-full h-screen overflow-hidden bg-black">
+   <div>
+     <div className="relative w-full h-screen overflow-hidden bg-black">
       {/* Slide Images */}
       {slides.map((slide, index) => (
         <div
@@ -182,6 +184,9 @@ const MyBanner = () => {
         ))}
       </div>
     </div>
+    {/* sub bannner */}
+    <Subbanner></Subbanner>
+   </div>
   );
 };
 
