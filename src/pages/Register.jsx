@@ -7,22 +7,27 @@ import { FaEyeSlash } from "react-icons/fa";
 
 const Register = () => {
   const { createuser, updateuser } = useContext(Authcontex);
+  const [nameError, setNameError] = useState(""); // new state for name error
   const [show, setshow] = useState(false);
-  const navigate = useNavigate(); 
-
+  const navigate = useNavigate();
+  const [pass, setpass] = useState("");
   const handleregister = (e) => {
     e.preventDefault();
     const name = e.target.name.value;
     const photo = e.target.photo.value;
     const password = e.target.password.value;
     const email = e.target.email.value;
-
+    const regex = /^(?=.*[A-Z])(?=.*[a-z])(?=.*[^A-Za-z0-9\s]).{6,}$/;
     // Password length check
-    if (password.length < 8) {
-      toast.error("Password must be at least 8 characters");
+    if (!regex.test(password)) {
+      // toast.error(" need Password must include uppercase, lowercase, special char & be at least 6 characters");
+      setpass(" Password must include uppercase, lowercase, special char & be at least 6 characters")
       return;
     }
-
+    if (name.length < 5) {
+  setNameError("Name must be at least 5 characters long");
+  return;
+}
     createuser(email, password)
       .then((userCredential) => {
         const firebaseUser = userCredential.user;
@@ -31,7 +36,7 @@ const Register = () => {
         updateuser({ displayName: name, photoURL: photo })
           .then(() => {
             toast.success('Registration successful!');
-            
+
             navigate("/");
           })
           .catch((error) => {
@@ -54,9 +59,18 @@ const Register = () => {
           <form onSubmit={handleregister} className="card-body">
             <fieldset className="fieldset">
               {/* Name */}
-              <label className="label">Your Name</label>
-              <input name="name" type="text" className="input" placeholder="your name" required />
-
+           <label className="label">Your Name</label>
+<input
+  name="name"
+  type="text"
+  className={`input ${nameError ? "border-red-500" : ""}`}
+  placeholder="your name"
+  required
+  onChange={() => setNameError("")} // clears error while typing
+/>
+{nameError && (
+  <p className="text-red-600 text-sm mt-1">{nameError}</p>
+)}
               {/* Photo URL */}
               <label className="label">Photo Url</label>
               <input name="photo" type="text" className="input" placeholder="Photo Url" />
@@ -68,6 +82,7 @@ const Register = () => {
               {/* Password */}
               <div className='relative'>
                 <label className="label">Password</label>
+
                 <input
                   name="password"
                   type={show ? "text" : "password"}
@@ -75,6 +90,10 @@ const Register = () => {
                   placeholder="Password"
                   required
                 />
+                {pass && (
+                  <p className="text-red-600 text-sm mt-1">{pass}</p>
+                )}
+
                 <span
                   onClick={() => setshow(!show)}
                   className='absolute right-4 top-7 cursor-pointer text-xl'

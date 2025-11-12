@@ -29,7 +29,7 @@ useEffect(() => {
 
   return (
     <div>
-      <h1>This is Home</h1>
+      {/* <h1>This is Home</h1> */}
       <MyBanner />
       <Active data={latest} />
       <div className='my-10'>

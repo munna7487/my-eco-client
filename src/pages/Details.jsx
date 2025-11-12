@@ -12,12 +12,15 @@ const Details = () => {
   const handlesubmit = async (e) => {
     e.preventDefault();
 
+    if (!user) {
+      alert("Please login first!");
+      return;
+    }
+
     const formdata = {
       challengeId: id,
-      title: e.target.title.value,
-      participants: 0,
-      duration: e.target.duration.value,
-      userid: user?._id,
+      progress: e.target.duration.value,
+      userid: user?.uid,
       status: e.target.status.value,
       email: user?.email,
       joindate: new Date(),
@@ -52,7 +55,7 @@ const Details = () => {
       });
   }, [id]);
 
-  // DELETE FUNCTION
+  // ✅ DELETE FUNCTION (fixed token header)
   const handleDelete = async () => {
     if (!window.confirm("Do you want to delete this challenge?")) return;
     if (!user) return alert("Please login first!");
@@ -62,16 +65,17 @@ const Details = () => {
       const res = await fetch(`https://eco-client-server.vercel.app/challange/${id}`, {
         method: "DELETE",
         headers: {
-          authorization: `Bearer ${token}`
-        }
+          "Content-Type": "application/json",
+          authorization: `Bearer ${token}`,
+        },
       });
 
-      if (res.ok) {
+      const result = await res.json();
+      if (res.ok && result.success) {
         alert("Challenge deleted successfully!");
         window.location.href = "/allmodels";
       } else {
-        const error = await res.json();
-        alert("Delete failed: " + (error.message || "Unknown error"));
+        alert("Delete failed: " + (result.message || "Unknown error"));
       }
     } catch (error) {
       console.error("Delete error:", error);
@@ -101,26 +105,24 @@ const Details = () => {
 
       {/* JOIN CHALLENGE FORM */}
       <div className="mt-10">
-        <button className="btn btn-success w-full mb-4">Join Challenge</button>
-
         <div className="max-w-md mx-auto bg-white shadow-lg rounded-lg p-6">
           <h2 className="text-2xl font-bold mb-4 text-center">Join This Challenge</h2>
           <form onSubmit={handlesubmit} className="space-y-4">
             <div>
-              <label className="block text-sm font-medium mb-1">Title</label>
-              <input type="text" name="title" defaultValue={model.title} readOnly className="input input-bordered w-full" />
+              <label className="block text-sm font-medium mb-1">Email</label>
+              <input type="text" value={user?.email || ""} readOnly className="input input-bordered w-full" />
             </div>
             <div>
               <label className="block text-sm font-medium mb-1">Status</label>
               <select name="status" className="select select-bordered w-full" required>
                 <option value="">Select status</option>
-                <option value="nostandard">No standard</option>
-                <option value="ongoing">Ongoing</option>
-                <option value="finished">Finished</option>
+                <option value="Not started">Not started</option>
+                <option value="Ongoing">Ongoing</option>
+                <option value="Finished">Finished</option>
               </select>
             </div>
             <div>
-              <label className="block text-sm font-medium mb-1">Duration (days)</label>
+              <label className="block text-sm font-medium mb-1">Progress</label>
               <input type="number" name="duration" placeholder="7" className="input input-bordered w-full" required />
             </div>
             <button type="submit" className="btn btn-primary w-full">
