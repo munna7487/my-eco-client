@@ -7,6 +7,30 @@ const Details = () => {
   const [loading, setLoading] = useState(true);
   const { user } = useContext(Authcontex);
   const { id } = useParams();
+  //akhne new +++
+
+  const [count, setCount] = useState(0);
+
+const handleJoin = async (e) => {
+  e.preventDefault();
+  try {
+    const res = await fetch(`https://eco-client-server.vercel.app/challange/${model._id}`, {
+      method: "PATCH",
+      headers: { "Content-Type": "application/json" },
+    });
+    const data = await res.json();
+    if (data.success) {
+      setModel(prev => ({ ...prev, participants: prev.participants + 1 }));
+      alert("Participants updated successfully!");
+    } else {
+      alert("Update failed");
+    }
+  } catch (err) {
+    console.error(err);
+    alert("Error updating participants");
+  }
+};
+
 
   // JOIN CHALLENGE FORM
   const handlesubmit = async (e) => {
@@ -125,7 +149,8 @@ const Details = () => {
               <label className="block text-sm font-medium mb-1">Progress</label>
               <input type="number" name="duration" placeholder="7" className="input input-bordered w-full" required />
             </div>
-            <button type="submit" className="btn btn-primary w-full">
+            {/* ami akhane join button add krchi jata ta click krle increse hobe  */}
+            <button onClick={handleJoin} type="submit" className="btn btn-primary w-full">
               Confirm Join
             </button>
           </form>

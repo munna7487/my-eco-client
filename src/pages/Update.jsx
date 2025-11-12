@@ -60,7 +60,7 @@ const Update = () => {
 
     return (
         <div className="max-w-2xl mx-auto bg-white shadow-2xl rounded-2xl p-10 my-10">
-            <h2 className="text-3xl font-bold text-center mb-8 text-green-700">Update Challenge</h2>
+            <h2 className="text-3xl font-bold text-center mb-8 text-green-700">Update Challenge munna</h2>
             <form onSubmit={handlesubmit} className="space-y-6">
 
                 <label className="label">Title</label>
