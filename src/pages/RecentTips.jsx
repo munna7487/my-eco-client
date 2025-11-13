@@ -38,9 +38,15 @@ const RecentTips = ({ data }) => {
                 <div className="px-3 py-1 rounded-full text-xs border border-indigo-500 text-indigo-300 bg-indigo-500/10">
                   {model.upvotes || 'General'}
                 </div>
-                <div className="px-3 py-1 rounded-full text-xs border border-gray-600 text-gray-400 bg-gray-700/30">
-                  {model.createdAt || 'Unknown'}
-                </div>
+              <div className="px-3 py-1 rounded-full text-xs border border-gray-600 text-gray-400 bg-gray-700/30">
+  {model.createdAt
+    ? new Date(model.createdAt).toLocaleDateString("en-US", {
+        year: "numeric",
+        month: "long",
+        day: "numeric",
+      })
+    : "Unknown"}
+</div>
               </div>
             </div>
           </div>

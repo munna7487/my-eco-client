@@ -63,11 +63,18 @@ export const router = createBrowserRouter([
         element: <Active />,
         loader: () => fetch('https://eco-client-server.vercel.app/latest')
       },
+      // {
+      //   path: '/update/:id',
+      //   element: <Privateroute><Update /></Privateroute>,
+   
+      // },
       {
-        path: '/update/:id',
-        element: <Privateroute><Update /></Privateroute>,
-        loader: ({ params }) => fetch(`https://eco-client-server.vercel.app/challange/${params.id}`)
-      },
+  path: '/update/:id',
+  element: <Privateroute><Update /></Privateroute>,
+  loader: ({ params }) =>
+    fetch(`https://eco-client-server.vercel.app/active/${params.id}`)
+},
+
       {
         path: '/allmodels',
         element: <Allmodels />,

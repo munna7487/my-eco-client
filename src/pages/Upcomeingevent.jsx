@@ -40,8 +40,14 @@ const Upcomeingevent = ({data}) => {
         {model.location || 'General'}
       </div>
       <div className="px-3 py-1 rounded-full text-xs border border-gray-300 text-gray-600 bg-gray-100 font-medium">
-        {model.date || 'Unknown'}
-      </div>
+  {model.date
+    ? new Date(model.date).toLocaleDateString("en-US", {
+        year: "numeric",
+        month: "long",
+        day: "numeric",
+      })
+    : "Unknown"}
+</div>
     </div>
   </div>
 </div>
