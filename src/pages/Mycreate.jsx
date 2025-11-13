@@ -18,11 +18,15 @@ const Mycreate = () => {
 
     const fetchActivities = async () => {
       try {
-        const res = await fetch(
-          `https://eco-client-server.vercel.app/challange?email=${user.email}`
-        );
+        const res = await fetch("https://eco-client-server.vercel.app/challange");
         const data = await res.json();
-        setActivities(data);
+
+        // ✅ এখানে শুধু নিজের email অনুযায়ী ফিল্টার করা হচ্ছে
+        const myChallenges = data.filter(
+          (item) => item.email === user.email
+        );
+
+        setActivities(myChallenges);
       } catch (err) {
         setError(err.message);
       } finally {
@@ -105,7 +109,6 @@ const Mycreate = () => {
       if (data.success) {
         Swal.fire("Updated!", "Challenge updated successfully.", "success");
         setEditing(null);
-        // refresh UI
         setActivities((prev) =>
           prev.map((a) =>
             a._id === editing._id ? { ...a, ...updatedData } : a
@@ -162,7 +165,6 @@ const Mycreate = () => {
                   {new Date(item.startDate).toLocaleDateString()}
                 </p>
 
-                {/* 🔹 Action Buttons */}
                 <div className="flex justify-between mt-4">
                   <button
                     onClick={() => setEditing(item)}
@@ -183,7 +185,6 @@ const Mycreate = () => {
         </div>
       )}
 
-      {/* 🔹 Update Modal */}
       {editing && (
         <div className="fixed inset-0 bg-black bg-opacity-40 flex justify-center items-center z-50">
           <div className="bg-white rounded-lg w-full max-w-lg p-6 relative">

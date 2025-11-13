@@ -69,6 +69,8 @@ const Login = () => {
                 const token = credential.accessToken;
                 const user = result.user;
                 // console.log(user);
+
+                toast("Login sucessfully")
                 navigate("/");
             })
             .catch((error) => {

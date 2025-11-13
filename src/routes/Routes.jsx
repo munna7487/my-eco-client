@@ -48,7 +48,7 @@ export const router = createBrowserRouter([
       },
        {
         path: '/myactivities',
-        element: <Myactivities />,
+        element:<Privateroute> <Myactivities /></Privateroute>,
       },
       {
         path: '/add',
@@ -91,9 +91,9 @@ export const router = createBrowserRouter([
       },
       {
         path: '/allmodels/:id',
-        element: <Privateroute>
+        element: 
           <Details />
-        </Privateroute>,
+        ,
 
       },
       {

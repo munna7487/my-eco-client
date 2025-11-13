@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useContext } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useParams, useNavigate } from 'react-router-dom'; // <-- added useNavigate
 import { Authcontex } from '../Provider/Authprovider';
 
 const Details = () => {
@@ -7,6 +7,7 @@ const Details = () => {
   const [loading, setLoading] = useState(true);
   const { user } = useContext(Authcontex);
   const { id } = useParams();
+  const navigate = useNavigate(); // <-- initialize navigate
 
   // FETCH MODEL
   useEffect(() => {
@@ -26,7 +27,7 @@ const Details = () => {
   const handlesubmit = async (e) => {
     e.preventDefault();
     if (!user) {
-      alert("Please login first!");
+      navigate("/login"); // <-- redirect to login if no user
       return;
     }
 
@@ -76,47 +77,46 @@ const Details = () => {
 
   return (
     <div className="max-w-3xl mx-auto mt-12 bg-gradient-to-b from-green-50 to-white shadow-2xl rounded-3xl p-8 border border-green-100">
-  <div className="overflow-hidden rounded-2xl shadow-lg mb-6">
-    <img
-      src={model.imageUrl}
-      alt={model.title}
-      className="w-full h-80 object-cover transform hover:scale-105 transition-transform duration-500"
-    />
-  </div>
+      <div className="overflow-hidden rounded-2xl shadow-lg mb-6">
+        <img
+          src={model.imageUrl}
+          alt={model.title}
+          className="w-full h-80 object-cover transform hover:scale-105 transition-transform duration-500"
+        />
+      </div>
 
-  <h2 className="text-4xl font-extrabold mb-3 text-green-800 drop-shadow-md">{model.title}</h2>
-  <div className="inline-block mb-5 px-4 py-1 rounded-full text-sm font-medium bg-green-600 text-white shadow">{model.category}</div>
-  <p className="text-gray-700 mb-6 leading-relaxed">{model.description}</p>
+      <h2 className="text-4xl font-extrabold mb-3 text-green-800 drop-shadow-md">{model.title}</h2>
+      <div className="inline-block mb-5 px-4 py-1 rounded-full text-sm font-medium bg-green-600 text-white shadow">{model.category}</div>
+      <p className="text-gray-700 mb-6 leading-relaxed">{model.description}</p>
 
-  <div className="grid grid-cols-2 sm:grid-cols-2 gap-6 text-gray-800 mb-8 bg-green-50 p-5 rounded-xl shadow-inner">
-    <p><span className="font-semibold">Participants:</span> {model.participants}</p>
-    <p><span className="font-semibold">Duration:</span> {model.duration} Days</p>
-    <p><span className="font-semibold">Impact:</span> {model.impactMetric}</p>
-    <p><span className="font-semibold">Target:</span> {model.target}</p>
-  </div>
+      <div className="grid grid-cols-2 sm:grid-cols-2 gap-6 text-gray-800 mb-8 bg-green-50 p-5 rounded-xl shadow-inner">
+        <p><span className="font-semibold">Participants:</span> {model.participants}</p>
+        <p><span className="font-semibold">Duration:</span> {model.duration} Days</p>
+        <p><span className="font-semibold">Impact:</span> {model.impactMetric}</p>
+        <p><span className="font-semibold">Target:</span> {model.target}</p>
+      </div>
 
-  <div className="flex justify-between mb-8">
-    <Link to="/allmodels" className="btn btn-ghost w-32 border border-green-600 text-green-700 hover:bg-green-100 hover:text-green-800">
-      Back
-    </Link>
-  </div>
+      <div className="flex justify-between mb-8">
+        <Link to="/allmodels" className="btn btn-ghost w-32 border border-green-600 text-green-700 hover:bg-green-100 hover:text-green-800">
+          Back
+        </Link>
+      </div>
 
-  {/* JOIN CHALLENGE FORM */}
-  <div className="mt-6">
-    <div className="max-w-md mx-auto bg-white shadow-2xl rounded-2xl p-6 border border-green-200">
-      <h2 className="text-2xl font-bold mb-5 text-center text-green-700">Join This Challenge</h2>
-      <form onSubmit={handlesubmit} className="space-y-4">
-        <button
-          type="submit"
-          className="btn btn-primary w-full bg-green-600 hover:bg-green-700 text-white font-semibold shadow-lg transition-transform transform hover:scale-105"
-        >
-          Join Challenge
-        </button>
-      </form>
+      {/* JOIN CHALLENGE FORM */}
+      <div className="mt-6">
+        <div className="max-w-md mx-auto bg-white shadow-2xl rounded-2xl p-6 border border-green-200">
+          <h2 className="text-2xl font-bold mb-5 text-center text-green-700">Join This Challenge</h2>
+          <form onSubmit={handlesubmit} className="space-y-4">
+            <button
+              type="submit"
+              className="btn btn-primary w-full bg-green-600 hover:bg-green-700 text-white font-semibold shadow-lg transition-transform transform hover:scale-105"
+            >
+              Join Challenge
+            </button>
+          </form>
+        </div>
+      </div>
     </div>
-  </div>
-</div>
-
   );
 };
 
