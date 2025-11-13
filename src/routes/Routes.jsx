@@ -68,12 +68,21 @@ export const router = createBrowserRouter([
       //   element: <Privateroute><Update /></Privateroute>,
    
       // },
-      {
-  path: '/update/:id',
-  element: <Privateroute><Update /></Privateroute>,
-  loader: ({ params }) =>
-    fetch(`https://eco-client-server.vercel.app/active/${params.id}`)
-},
+//       {
+//   path: '/update/:id',
+//   element: <Privateroute><Update /></Privateroute>,
+//   loader: ({ params }) =>
+//     fetch(`https://eco-client-server.vercel.app/active/${params.id}`)
+// },
+    {
+        path: '/update/:id',
+        element: <Privateroute><Update /></Privateroute>,
+        loader: async ({ params }) => {
+          const res = await fetch(`https://eco-client-server.vercel.app/active/${params.id}`);
+          if (!res.ok) throw new Response("Challenge not found", { status: 404 });
+          return res.json();
+        }
+      },
 
       {
         path: '/allmodels',

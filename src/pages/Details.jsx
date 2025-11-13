@@ -80,32 +80,32 @@ const handleJoin = async (e) => {
   }, [id]);
 
   // ✅ DELETE FUNCTION (fixed token header)
-  const handleDelete = async () => {
-    if (!window.confirm("Do you want to delete this challenge?")) return;
-    if (!user) return alert("Please login first!");
+  // const handleDelete = async () => {
+  //   if (!window.confirm("Do you want to delete this challenge?")) return;
+  //   if (!user) return alert("Please login first!");
 
-    try {
-      const token = await user.getIdToken();
-      const res = await fetch(`https://eco-client-server.vercel.app/challange/${id}`, {
-        method: "DELETE",
-        headers: {
-          "Content-Type": "application/json",
-          authorization: `Bearer ${token}`,
-        },
-      });
+  //   try {
+  //     const token = await user.getIdToken();
+  //     const res = await fetch(`https://eco-client-server.vercel.app/challange/${id}`, {
+  //       method: "DELETE",
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //         authorization: `Bearer ${token}`,
+  //       },
+  //     });
 
-      const result = await res.json();
-      if (res.ok && result.success) {
-        alert("Challenge deleted successfully!");
-        window.location.href = "/allmodels";
-      } else {
-        alert("Delete failed: " + (result.message || "Unknown error"));
-      }
-    } catch (error) {
-      console.error("Delete error:", error);
-      alert("Error: " + error.message);
-    }
-  };
+  //     const result = await res.json();
+  //     if (res.ok && result.success) {
+  //       alert("Challenge deleted successfully!");
+  //       window.location.href = "/allmodels";
+  //     } else {
+  //       alert("Delete failed: " + (result.message || "Unknown error"));
+  //     }
+  //   } catch (error) {
+  //     console.error("Delete error:", error);
+  //     alert("Error: " + error.message);
+  //   }
+  // };
 
   if (loading) return <div className="text-center text-3xl mt-32">Loading...</div>;
   if (!model) return <div className="text-center text-red-600 text-2xl mt-32">No Data Found</div>;
@@ -122,8 +122,8 @@ const handleJoin = async (e) => {
       <p><strong>Target:</strong> {model.target}</p>
 
       <div className="mt-8 flex gap-4">
-        <Link to={`/update/${model._id}`} className="btn btn-primary">Update</Link>
-        <button onClick={handleDelete} className="btn btn-error">Delete</button>
+        {/* <Link to={`/update/${model._id}`} className="btn btn-primary">Update</Link> */}
+        {/* <button onClick={handleDelete} className="btn btn-error">Delete</button> */}
         <Link to="/allmodels" className="btn btn-ghost">Back</Link>
       </div>
 
