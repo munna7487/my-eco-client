@@ -19,9 +19,12 @@ const Header = () => {
   };
 
   return (
-    <div className="navbar bg-base-100 shadow-sm sticky top-0 z-50">
+   <div className="w-full">
+  <div className="navbar bg-base-100 shadow-sm sticky top-0 z-50">
+    <div className="w-full max-w-[1260px] mx-auto flex justify-between items-center">
+      
       {/* Left: Logo + Mobile Menu */}
-      <div className="navbar-start">
+      <div className="flex items-center gap-4">
         <div className="dropdown">
           <label tabIndex={0} className="btn btn-ghost lg:hidden">
             <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -31,17 +34,15 @@ const Header = () => {
           <ul tabIndex={0} className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
             <li><Link to="/">Home</Link></li>
             <li><Link to="/allmodels">Challenge</Link></li>
-            <li><Link to="/add">My Activities</Link></li>
+            <li><Link to="/myactivities">My Activities</Link></li>
           </ul>
         </div>
-        <div className='flex gap-0.5'>
-          <Link to="/"><img className='h-10' src={logo} alt="Logo" /></Link>
-          <p><Link to="/" className="btn btn-ghost text-xl font-bold text-primary">EcoTrack</Link></p>
-        </div>
+        <Link to="/"><img className='h-10' src={logo} alt="Logo" /></Link>
+        <p><Link to="/" className="btn btn-ghost text-xl font-bold text-primary">EcoTrack</Link></p>
       </div>
 
       {/* Center: Desktop Menu */}
-      <div className="navbar-center hidden lg:flex">
+      <div className="hidden lg:flex">
         <ul className="menu menu-horizontal px-1 gap-4">
           <li><Link to="/" className="hover:text-primary">Home</Link></li>
           <li><Link to="/allmodels" className="hover:text-primary">Challenge</Link></li>
@@ -50,7 +51,7 @@ const Header = () => {
       </div>
 
       {/* Right: Auth Section */}
-      <div className="navbar-end gap-2">
+      <div className="flex items-center gap-2">
         {user ? (
           <div className="dropdown dropdown-end">
             <label tabIndex={0} className="btn btn-ghost avatar flex items-center gap-2">
@@ -60,7 +61,6 @@ const Header = () => {
                   alt="User Avatar"
                   className="w-full h-full object-cover"
                   onError={(e) => {
-                    // Fallback if image fails to load
                     e.target.onerror = null;
                     e.target.src = `https://ui-avatars.com/api/?name=${user?.displayName || user?.email?.split('@')[0]}&background=007bff&color=fff`;
                   }}
@@ -87,7 +87,11 @@ const Header = () => {
           <Link to="/login" className="btn btn-outline btn-primary btn-sm">Login</Link>
         )}
       </div>
+
     </div>
+  </div>
+</div>
+
   );
 };
 

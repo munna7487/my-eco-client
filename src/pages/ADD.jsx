@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import { Authcontex } from '../Provider/Authprovider';
 import { Link, Links } from 'react-router';
+import { toast } from 'react-toastify';
 
 const ADD = () => {
   const { user } = useContext(Authcontex);
@@ -39,6 +40,7 @@ const ADD = () => {
       .then((res) => res.json())
       .then((data) => {
         console.log("Success:", data);
+        toast("Add a challange");
       })
       .catch((error) => {
         console.error("Error:", error);
@@ -65,7 +67,7 @@ const ADD = () => {
 </div>
 
     <div className="max-w-md mx-auto bg-white shadow-lg rounded-lg p-6 my-10">
-      <h2 className="text-2xl font-bold mb-4 text-center">Create Card</h2>
+      <h2 className="text-2xl font-bold mb-4 text-center">Create A challange </h2>
       <form onSubmit={handlesubmit} className="space-y-4">
         {/* Title */}
         <div>

@@ -76,7 +76,8 @@ const Update = () => {
     <div className="flex flex-col lg:flex-row gap-10 lg:gap-20 p-6 justify-center">
       {/* Form */}
       <div className="w-full lg:w-96 bg-white shadow-2xl rounded-2xl p-8">
-        <h2 className="text-3xl font-bold text-center mb-8 text-green-700">Update Challenge</h2>
+        <h2 className="text-3xl font-bold text-center 
+        mb-8 text-green-700">Update Challenge</h2>
         <form onSubmit={handlesubmit} className="space-y-6">
           <label className="label text-gray-700 font-medium">Progress</label>
           <input type="text" name="progress" defaultValue={model.progress || ""} className="input input-bordered w-full" required />
@@ -90,8 +91,11 @@ const Update = () => {
             </select>
           </div>
 
-          <button type="submit" className="btn btn-success btn-lg w-full">Update Challenge</button>
-          <button type="button" onClick={handleDelete} className="btn btn-error w-full">Delete</button>
+        
+              <button type="submit" className="btn btn-success btn-lg w-full">Update Challenge</button>
+          <button type="button" onClick={handleDelete} 
+          className="btn btn-error w-full">Leave challange</button>
+        
         </form>
       </div>
 

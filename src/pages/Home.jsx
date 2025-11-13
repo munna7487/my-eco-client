@@ -3,6 +3,8 @@ import MyBanner from './MyBanner';
 import Active from './Active';
 import RecentTips from './RecentTips';
 import Upcomeingevent from './Upcomeingevent';
+import Green from './Green';
+import HowItWorks from './HowItWorks';
 
 
 const Home = () => {
@@ -28,16 +30,21 @@ useEffect(() => {
   }, []);
 
   return (
-    <div>
+    <div >
       {/* <h1>This is Home</h1> */}
       <MyBanner />
-      <Active data={latest} />
+      <div className='max-w-[1260px] mx-auto'>
+        <Active data={latest} />
       <div className='my-10'>
         <RecentTips data={recent}></RecentTips>
       </div>
       <div>
         <Upcomeingevent data={upcoming}></Upcomeingevent>
+
       </div>
+      </div>
+      <Green></Green>
+      <HowItWorks></HowItWorks>
     </div>
   );
 };

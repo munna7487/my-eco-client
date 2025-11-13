@@ -31,7 +31,7 @@ const Search = () => {
     if (recent.length === 0) fetchData();
   }, [recent.length]);
 
-  // ফিল্টার: trim + case-insensitive
+  // Filter: trim + case-insensitive
   const filteredData = selectedCategory
     ? recent.filter(item => {
         const itemCat = (item.category || '').trim().toLowerCase();
@@ -41,8 +41,10 @@ const Search = () => {
     : recent;
 
   return (
-    <div className="p-6 max-w-7xl mx-auto">
-      <h1 className="text-2xl font-bold mb-6">Search Challenges</h1>
+    <div className="p-4 sm:p-6 md:p-8 max-w-7xl mx-auto">
+      <h1 className="text-xl sm:text-2xl md:text-3xl font-bold mb-6 text-center md:text-left">
+        Search Challenges
+      </h1>
 
       {/* Category Dropdown */}
       <div className="mb-6 max-w-xs">
@@ -62,7 +64,7 @@ const Search = () => {
       </div>
 
       {/* Loading & Error */}
-      {loading && <p className="text-blue-600">Loading challenges...</p>}
+      {loading && <p className="text-blue-600 mb-4">Loading challenges...</p>}
       {error && (
         <div className="text-red-600 mb-4">
           <p>Error: {error}</p>
@@ -74,12 +76,10 @@ const Search = () => {
 
       {/* Cards */}
       {!loading && !error && (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {filteredData.length > 0 ? (
             filteredData.map((data) => (
-              data && data._id ? (
-                <Modelcard key={data._id} model={data} />
-              ) : null
+              data && data._id ? <Modelcard key={data._id} model={data} /> : null
             ))
           ) : (
             <p className="col-span-full text-center text-gray-500">
