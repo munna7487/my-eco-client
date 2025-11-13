@@ -59,7 +59,7 @@ const Myactivities = () => {
     
 <div className="">
   <div className="p-6 max-w-7xl mx-auto">
-    {/* ✅ Top Stats Section */}
+    {/*  Top Stats Section */}
     <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-10">
       <div className="bg-gradient-to-br from-blue-50 to-blue-100 p-6 rounded-2xl shadow-lg text-center">
         <p className="text-gray-600 text-sm">Total Joined</p>
@@ -79,12 +79,12 @@ const Myactivities = () => {
       </div>
     </div>
 
-    {/* ✅ Title */}
+    {/*  Title */}
     <h1 className="text-3xl font-bold text-center mb-8 text-gray-800">
       My Activities
     </h1>
 
-    {/* ✅ Two-column layout */}
+    {/*  Two-column layout */}
     <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
       {/* 🎯 Left Side – Activities Cards */}
       <div>

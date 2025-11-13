@@ -109,9 +109,9 @@ export const router = createBrowserRouter([
       {
         path: '/footer',
         element: (
-          <Privateroute>
-            <footer>Private Footer</footer>
-          </Privateroute>
+         
+            <footer></footer>
+          
         )
       }
     ]

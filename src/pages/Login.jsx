@@ -52,7 +52,7 @@ const Login = () => {
         console.log(emailref.current.value)
         resetpass(emailref.current.value)
             .then(res => {
-                toast.success("check your email")
+                // toast.success("check your email")
             })
             .catch((e) => {
                 toast.error(e.message)
@@ -109,8 +109,8 @@ const Login = () => {
                                 onClick={() => setshow(!show)}
                                 className='absolute right-[28px] top-[35px] cursor-pointer'
                             >
-                                {show ? <IoIosEyeOff /> : <FaEye />}
-                            </span>
+                                {show ?<FaEye /> :<IoIosEyeOff />  }
+                            </span>  
                             {pass && (
   <p className="text-red-600 text-sm mt-1">{pass}</p>
 )}
